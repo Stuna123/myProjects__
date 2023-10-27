@@ -5,6 +5,7 @@ const moment = require("moment")
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 // path to access our data employee and to retreive all employee
 app.get('/api/employees', (req, res) => {
@@ -27,8 +28,8 @@ app.get('/api/employees/:name', (req, res) => {
 // create employee
 app.post('/api/employees', (req, res) => {
     const newEmployee = {
-        name:   req.body,
-        email:  req.body,
+        name:   req.body.name,
+        email:  req.body.email,
         age:    Math.round(Math.random() * (100 - 18) + 18),
         added: `${moment().format()}` //moment we added
     }
@@ -38,7 +39,7 @@ app.post('/api/employees', (req, res) => {
     }
     
     employees.push(newEmployee)
-    res.json(employees)
+    res.json(employees) 
     
 })
 
