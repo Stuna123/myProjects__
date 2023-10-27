@@ -27,8 +27,8 @@ app.get('/api/employees/:name', (req, res) => {
 // create employee
 app.post('/api/employees', (req, res) => {
     const newEmployee = {
-        name:   req.body,
-        email:  req.body,
+        name:   req.body.name,
+        email:  req.body.email,
         age:    Math.round(Math.random() * (100 - 18) + 18),
         added: `${moment().format()}` //moment we added
     }
